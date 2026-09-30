@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>VELORA — Invoice Generator</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">V</div>
+            <div>
+                <h2>VELORA</h2>
+                <span>Invoice System</span>
+            </div>
+        </div>
+
+        <nav>
+            <a class="active" href="#">
+                <span>▣</span>
+                Invoice
+            </a>
+
+            <a href="#">
+                <span>▤</span>
+                Hisobotlar
+            </a>
+
+            <a href="#">
+                <span>◉</span>
+                Mijozlar
+            </a>
+
+            <a href="#">
+                <span>◈</span>
+                Sozlamalar
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="system-status">
+                <span class="status-dot"></span>
+                System Online
+            </div>
+
+            <div class="version">
+                VELORA v1.0
+            </div>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+
+            <div>
+                <p class="small-title">BOSHQARUV PANELI</p>
+                <h1>Invoice Generator</h1>
+            </div>
+
+            <div class="top-actions">
+
+                <button class="icon-btn" onclick="showNotification()">
+                    🔔
+                </button>
+
+                <div class="user-profile">
+                    <div class="avatar">J</div>
+
+                    <div>
+                        <strong>Jadra</strong>
+                        <small>Administrator</small>
+                    </div>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- ACTIONS -->
+        <section class="action-bar">
+
+            <div>
+                <h2>Yangi Invoice</h2>
+                <p>Mijoz uchun professional hisob-faktura yarating.</p>
+            </div>
+
+            <div class="buttons">
+
+                <button class="btn secondary" onclick="clearInvoice()">
+                    ↻ Tozalash
+                </button>
+
+                <button class="btn gold" onclick="printInvoice()">
+                    🖨 Chop etish
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- INVOICE -->
+        <section class="invoice-wrapper">
+
+            <div class="invoice-card" id="invoice">
+
+                <!-- INVOICE HEADER -->
+                <div class="invoice-header">
+
+                    <div class="company">
+
+                        <div class="company-logo">
+                            V
+                        </div>
+
+                        <div>
+                            <h2>VELORA</h2>
+                            <p>Premium Digital Company</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="invoice-title">
+
+                        <span>INVOICE</span>
+
+                        <div class="invoice-number">
+                            <label>Invoice №</label>
+
+                            <input
+                                type="text"
+                                id="invoiceNumber"
+                                value="VEL-2026-001"
+                            >
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- META -->
+                <div class="invoice-meta">
+
+                    <div class="meta-box">
+
+                        <label>Sana</label>
+
+                        <input
+                            type="date"
+                            id="invoiceDate"
+                        >
+
+                    </div>
+
+                    <div class="meta-box">
+
+                        <label>To‘lov muddati</label>
+
+                        <input
+                            type="date"
+                            id="dueDate"
+                        >
+
+                    </div>
+
+                    <div class="meta-box">
+
+                        <label>To‘lov holati</label>
+
+                        <select id="paymentStatus">
+
+                            <option value="Kutilmoqda">
+                                Kutilmoqda
+                            </option>
+
+                            <option value="To‘langan">
+                                To‘langan
+                            </option>
+
+                            <option value="Qisman to‘langan">
+                                Qisman to‘langan
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PARTIES -->
+                <div class="parties">
+
+                    <!-- SELLER -->
+                    <div class="party-card">
+
+                        <div class="section-label">
+                            <span>01</span>
+                            SOTUVCHI
+                        </div>
+
+                        <input
+                            type="text"
+                            id="companyName"
+                            value="VELORA Digital"
+                            placeholder="Kompaniya nomi"
+                        >
+
+                        <input
+                            type="text"
+                            id="companyAddress"
+                            value="Toshkent shahri, O‘zbekiston"
+                            placeholder="Manzil"
+                        >
+
+                        <input
+                            type="text"
+                            id="companyPhone"
+                            value="+998 90 123 45 67"
+                            placeholder="Telefon"
+                        >
+
+                        <input
+                            type="email"
+                            id="companyEmail"
+                            value="info@velora.uz"
+                            placeholder="Email"
+                        >
+
+                    </div>
+
+
+                    <!-- CUSTOMER -->
+                    <div class="party-card">
+
+                        <div class="section-label">
+                            <span>02</span>
+                            MIJOZ
+                        </div>
+
+                        <input
+                            type="text"
+                            id="clientName"
+                            placeholder="Mijoz nomi"
+                        >
+
+                        <input
+                            type="text"
+                            id="clientAddress"
+                            placeholder="Mijoz manzili"
+                        >
+
+                        <input
+                            type="text"
+                            id="clientPhone"
+                            placeholder="Telefon raqami"
+                        >
+
+                        <input
+                            type="email"
+                            id="clientEmail"
+                            placeholder="Email manzili"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- ITEMS -->
+                <div class="items-section">
+
+                    <div class="items-header">
+
+                        <div>
+                            <div class="section-label">
+                                <span>03</span>
+                                MAHSULOT VA XIZMATLAR
+                            </div>
+
+                            <p>
+                                Invoice tarkibidagi mahsulot yoki xizmatlarni kiriting.
+                            </p>
+                        </div>
+
+                        <button
+                            class="add-item"
+                            onclick="addItem()"
+                        >
+                            + Mahsulot qo‘shish
+                        </button>
+
+                    </div>
+
+
+                    <div class="table-container">
+
+                        <table>
+
+                            <thead>
+
+                            <tr>
+                                <th>#</th>
+                                <th>Mahsulot / Xizmat</th>
+                                <th>Miqdor</th>
+                                <th>Narx</th>
+                                <th>Jami</th>
+                                <th></th>
+                            </tr>
+
+                            </thead>
+
+                            <tbody id="itemsBody">
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <!-- BOTTOM -->
+                <div class="invoice-bottom">
+
+                    <!-- NOTES -->
+                    <div class="notes-area">
+
+                        <div class="section-label">
+                            <span>04</span>
+                            QO‘SHIMCHA MA’LUMOT
+                        </div>
+
+                        <textarea
+                            id="notes"
+                            placeholder="Izoh, to‘lov shartlari yoki qo‘shimcha ma’lumot..."
+                        ></textarea>
+
+
+                        <div class="payment-info">
+
+                            <strong>To‘lov ma’lumotlari</strong>
+
+                            <p>
+                                Bank: VELORA Bank
+                            </p>
+
+                            <p>
+                                Hisob raqami: 40817 0000 1234
+                            </p>
+
+                            <p>
+                                Karta: 8600 **** **** 2026
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TOTALS -->
+                    <div class="totals">
+
+                        <div class="total-row">
+                            <span>Subtotal</span>
+                            <strong id="subtotal">0 so‘m</strong>
+                        </div>
+
+
+                        <div class="discount-row">
+
+                            <div>
+                                <span>Chegirma (%)</span>
+                            </div>
+
+                            <input
+                                type="number"
+                                id="discount"
+                                value="0"
+                                min="0"
+                                max="100"
+                                oninput="calculateTotal()"
+                            >
+
+                        </div>
+
+
+                        <div class="total-row">
+
+                            <span>Chegirma summasi</span>
+
+                            <strong id="discountAmount">
+                                0 so‘m
+                            </strong>
+
+                        </div>
+
+
+                        <div class="tax-row">
+
+                            <span>Soliq (%)</span>
+
+                            <input
+                                type="number"
+                                id="tax"
+                                value="0"
+                                min="0"
+                                max="100"
+                                oninput="calculateTotal()"
+                            >
+
+                        </div>
+
+
+                        <div class="total-row">
+
+                            <span>Soliq summasi</span>
+
+                            <strong id="taxAmount">
+                                0 so‘m
+                            </strong>
+
+                        </div>
+
+
+                        <div class="grand-total">
+
+                            <span>UMUMIY SUMMA</span>
+
+                            <strong id="grandTotal">
+                                0 so‘m
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FOOTER -->
+                <div class="invoice-footer">
+
+                    <div>
+                        <strong>Rahmat!</strong>
+                        <p>
+                            Bizning xizmatlarimizdan foydalanganingiz uchun tashakkur.
+                        </p>
+                    </div>
+
+                    <div class="footer-right">
+                        <span>Generated by</span>
+                        <strong>VELORA</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- NOTIFICATION -->
+<div id="notification" class="notification">
+    <span>✓</span>
+    Invoice muvaffaqiyatli yangilandi!
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
